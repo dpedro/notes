@@ -1,5 +1,57 @@
 # Angular
 
+## component
+
+### Callback function
+
+```javascript
+@Component({
+  ...
+  template: '<child [myCallback]="theBoundCallback"></child>'
+})
+export class ParentComponent{
+  public theBoundCallback: Function;
+
+  public ngOnInit(){
+    this.theBoundCallback = this.theCallback.bind(this);
+  }
+
+  public theCallback(){
+    ...
+  }
+}
+
+@Component({...})
+export class ChildComponent{
+  //This will be bound to the ParentComponent.theCallback
+  @Input()
+  public myCallback: Function; 
+  ...
+}
+```
+
+```javascript
+@Component({
+  ...
+  template: '<child [myCallback]="theCallback.bind(this)"></child>',
+  directives: [ChildComponent]
+})
+export class ParentComponent {
+
+  public theCallback(){
+    ...
+  }
+}
+
+@Component({...})
+export class ChildComponent{
+  //This will be bound to the ParentComponent.theCallback
+  @Input()
+  public myCallback: Function; 
+  ...
+}
+```
+
 ## Transclusion
 
 ### single slot transclusion
