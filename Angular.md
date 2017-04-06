@@ -1,6 +1,29 @@
 # Angular
 
-## component
+## Router
+
+### Naviguation
+
+```javascript
+import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+constructor(router: Router) {}
+
+router.events.subscribe(event => {
+    if(event instanceof NavigationStart) {
+        console.log("NavigationStart", event);
+    }
+    if(event instanceof NavigationEnd) {
+        console.log("NavigationEnd", event);
+    } 
+    // NavigationEnd
+    // NavigationCancel
+    // NavigationError
+    // RoutesRecognized
+});
+```
+
+
+## Component
 
 ### Callback function
 
